@@ -1,0 +1,10 @@
+{
+  "name": "vue-cli-plugin-express",
+  "version": "1.0.0",
+  "description": "Express plugin for vue cli 3",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigbank-as/vue-cli-plugin-express.git"
+  }
+}
