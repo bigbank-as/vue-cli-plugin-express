@@ -1,4 +1,5 @@
 const insert = require('./insert')
+const ignore = require('./ignore')
 const remove = require('./remove')
 
 module.exports = (api, opts, rootOpts) => {
