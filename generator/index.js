@@ -56,6 +56,7 @@ app.use('/api', ApiRouter())\n`
       insert(routerInstallation, filePath, middlewareInstallationLine)
     }
 
+    ignore(ignorePath, 'dist-server')
     // Remove the middleware placeholder comment
     remove(filePath, middlewareInstallationLine)
   })
