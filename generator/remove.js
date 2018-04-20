@@ -2,9 +2,10 @@ const fs = require('fs')
 const encoding = 'utf8'
 
 module.exports = (path, pattern) => {
-  const content = fs.readFileSync(path, { encoding })
+  let content = fs.readFileSync(path, { encoding })
   const lines = content.split(/\r?\n/g)
-  const removed = lines.replace(new RegExp(pattern, 'm'), '')
+  const removed = lines.filter(line => !line.match(pattern))
+  content = removed.join('\n')
 
-  fs.writeFileSync(path, removed, { encoding })
+  fs.writeFileSync(path, content, { encoding })
 }
