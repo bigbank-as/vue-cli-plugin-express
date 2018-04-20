@@ -25,6 +25,17 @@ module.exports = (api, opts, rootOpts) => {
     'build-server': 'rm -rf dist-server && mkdir dist-server && babel --no-babelrc -d dist-server server -s --presets=""'
   }
 
+  // Swap Vue with the runtime build to avoid CSP errors, since the full build uses eval() :<
+  const vue = {
+    configureWebpack: {
+      resolve: {
+        alias: {
+          'vue$': 'vue/dist/vue.runtime.esm.js'
+        }
+      }
+    }
+  }
+
   // Add the middleware dependency only if the user requests it
   if (opts.useMiddleware) {
     Object.assign(dependencies, {
@@ -35,7 +46,8 @@ module.exports = (api, opts, rootOpts) => {
   const pkg = {
     dependencies,
     devDependencies,
-    scripts
+    scripts,
+    vue
   }
 
   api.extendPackage(pkg)
